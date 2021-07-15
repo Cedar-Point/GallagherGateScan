@@ -1,0 +1,20 @@
+﻿@page "/"
+@inject GallagherAPIService ga
+
+<ul>
+    <li><b>APIPath: </b>@ga.APIPath</li>
+    <li><b>APIKey: </b>@ga.APIKey</li>
+    <li><b>APIThumbprint: </b>@ga.APICertThumbprint</li>
+    <li><b>APICertificate: </b>@ga.APICertificate.Subject</li>
+</ul>
+
+<pre>@Response</pre>
+
+@code {
+    public string Response;
+    protected override async Task OnInitializedAsync()
+    {
+        Response = await ga.Get();
+        await base.OnInitializedAsync();
+    }
+}
